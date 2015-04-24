@@ -16,6 +16,13 @@ Record the IP addresses of the machines you want to be your minions.
 
 Stick the system information into the 'inventory' file.
 
+Ensure that RHEL machines are properly subscribed to subscription
+management.  For more information, see
+https://access.redhat.com/documentation/en-US/Red_Hat_Subscription_Management/
+
+You must also ensure that for yum-managed non-Atomic hosts that the
+Extras repository is enabled: `subscription-manager repos --enable rhel-7-server-extras-rpms`
+
 ###  Set up ssh access via public keys
 
 See the `pre-setup/` directory.
@@ -32,9 +39,6 @@ You already did the config!  Just run the setup::
     $ ansible-playbook -i inventory setup.yml
 
 This works on RHEL7, Atomic, F20, F21 and rawhide.
-
-For RHEL7 it will set up rhn subscriptions.  Put your username in a file named
-`~/rhn_username`.  Put your rhn password into a file named `~/rhn_password`.
 
 When DNS setup is enabled, it may take some time for Kubernetes (and Docker
 inside) to download the images and start the DNS pod. Watch `kubectl get pods`

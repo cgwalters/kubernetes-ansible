@@ -19,9 +19,6 @@
   failed_when: false
   changed_when: false
 
-- include: rhel7_repos.yml
-  when: is_rhel7.rc == 0
-
 - name: Determine if firewalld installed
   command: "rpm -q firewalld"
   register: has_firewalld
